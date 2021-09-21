@@ -1,0 +1,152 @@
+<div class="modal-header">
+  <h2 class="modal-title"><b>Cadastrar primeira senha</b></h2>
+  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h4>O usuário deve cadastrar uma senha para acessar o portal</h4>
+  <form [formGroup]="alterarSenhaForm" novalidate>
+    <div class="form-group">
+      <label for="cpf" class="control-label">CPF</label>
+      <input
+        formControlName="cpf"
+        type="text"
+        id="cpf"
+        class="form-control"
+        mask="000.000.000-99"
+        placeholder="CPF"
+        [ngClass]="{
+          'is-invalid': alterarSenhaForm.controls['cpf'].invalid && alterarSenhaForm.controls['cpf'].touched
+        }"
+      />
+      <div
+        *ngIf="alterarSenhaForm.controls['cpf'].invalid && alterarSenhaForm.controls['cpf'].touched"
+        class="invalid-feedback"
+      >
+        <div *ngIf="alterarSenhaForm.controls['cpf'].errors.required">Campo obrigatório</div>
+      </div>
+    </div>
+    <div class="form-group date">
+      <label for="data-nascimento" class="control-label">Data de Nascimento</label>
+
+      <input
+        formControlName="dataNascimento"
+        type="text"
+        id="data-nascimento"
+        mask="00/00/9999"
+        class="form-control"
+        placeholder="__/__/____"
+        [ngClass]="{
+          'is-invalid':
+            alterarSenhaForm.controls['dataNascimento'].invalid && alterarSenhaForm.controls['dataNascimento'].touched
+        }"
+      />
+
+      <div
+        *ngIf="
+          alterarSenhaForm.controls['dataNascimento'].invalid && alterarSenhaForm.controls['dataNascimento'].touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="alterarSenhaForm.controls['dataNascimento'].errors.required">Campo obrigatório</div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="!primeiraSenha">
+      <label for="senha-atual" class="control-label">Senha Atual</label>
+      <input
+        formControlName="senhaAtual"
+        type="password"
+        id="senha-atual"
+        class="form-control"
+        placeholder="Senha Atual"
+        [ngClass]="{
+          'is-invalid':
+            alterarSenhaForm.controls['senhaAtual'].invalid && alterarSenhaForm.controls['senhaAtual'].touched
+        }"
+      />
+
+      <div
+        *ngIf="alterarSenhaForm.controls['senhaAtual'].invalid && alterarSenhaForm.controls['senhaAtual'].touched"
+        class="invalid-feedback"
+      >
+        <div *ngIf="alterarSenhaForm.controls['senhaAtual'].errors.mustMatch">As senhas devem ser iguais</div>
+        <div *ngIf="alterarSenhaForm.controls['senhaAtual'].errors.minlength">
+          Mínimo de {{ alterarSenhaForm.controls['senhaAtual'].errors.minlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['senhaAtual'].errors.maxlength">
+          Máximo de {{ alterarSenhaForm.controls['senhaAtual'].errors.maxlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['senhaAtual'].errors.required">Campo obrigatório</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nova-senha" class="control-label">Nova Senha</label>
+      <input
+        formControlName="novaSenha"
+        type="password"
+        id="nova-senha"
+        class="form-control"
+        placeholder="Nova Senha"
+        [ngClass]="{
+          'is-invalid': alterarSenhaForm.controls['novaSenha'].invalid && alterarSenhaForm.controls['novaSenha'].touched
+        }"
+      />
+
+      <div
+        *ngIf="alterarSenhaForm.controls['novaSenha'].invalid && alterarSenhaForm.controls['novaSenha'].touched"
+        class="invalid-feedback"
+      >
+        <div *ngIf="alterarSenhaForm.controls['novaSenha'].errors.mustMatch">As senhas devem ser iguais</div>
+        <div *ngIf="alterarSenhaForm.controls['novaSenha'].errors.minlength">
+          Mínimo de {{ alterarSenhaForm.controls['novaSenha'].errors.minlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['novaSenha'].errors.maxlength">
+          Máximo de {{ alterarSenhaForm.controls['novaSenha'].errors.maxlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['novaSenha'].errors.required">Campo obrigatório</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmar-senha" class="control-label">Confirmar Senha</label>
+
+      <input
+        formControlName="confirmarSenha"
+        type="password"
+        id="confirmar-senha"
+        class="form-control"
+        placeholder="Confirmar senha"
+        [ngClass]="{
+          'is-invalid':
+            alterarSenhaForm.controls['confirmarSenha'].invalid && alterarSenhaForm.controls['confirmarSenha'].touched
+        }"
+      />
+
+      <div
+        *ngIf="
+          alterarSenhaForm.controls['confirmarSenha'].invalid && alterarSenhaForm.controls['confirmarSenha'].touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="alterarSenhaForm.controls['confirmarSenha'].errors.mustMatch">As senhas devem ser iguais</div>
+        <div *ngIf="alterarSenhaForm.controls['confirmarSenha'].errors.minlength">
+          Mínimo de {{ alterarSenhaForm.controls['confirmarSenha'].errors.minlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['confirmarSenha'].errors.maxlength">
+          Máximo de {{ alterarSenhaForm.controls['confirmarSenha'].errors.maxlength.requiredLength }} caracteres
+        </div>
+        <div *ngIf="alterarSenhaForm.controls['confirmarSenha'].errors.required">Campo obrigatório</div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" (click)="bsModalRef.hide()" class="btn btn-danger">
+    <i class="fas fa-times"></i> Cancelar
+  </button>
+  <button type="button" [disabled]="alterarSenhaForm.invalid" class="btn btn-success">
+    <i class="fas fa-check"></i> Confirmar
+  </button>
+</div>

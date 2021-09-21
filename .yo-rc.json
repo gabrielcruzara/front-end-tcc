@@ -1,0 +1,28 @@
+{
+  "generator-ngx-rocket": {
+    "version": "9.1.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "Modelo SPA",
+      "target": ["web"],
+      "pwa": false,
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "languages": ["pt-BR"],
+      "tools": ["prettier", "compodoc"],
+      "utility": ["lodash", "moment"],
+      "deploy": "none",
+      "projectName": "modelo-spa",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}

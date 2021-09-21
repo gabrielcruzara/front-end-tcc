@@ -1,0 +1,27 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+/* Tema do Angular Material */
+//@import '../src/app/@shared/styles/material-theme.scss';
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+@import "~ionicons/css/ionicons.min.css";
+@import "~ngx-toastr/toastr";
+/* Admin LTE */
+@import "~admin-lte/plugins/fontawesome-free/css/all.min.css";
+@import "~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css";
+@import "~admin-lte/dist/css/adminlte.min.css";
+
+// Theme customization
+@import "theme/theme";

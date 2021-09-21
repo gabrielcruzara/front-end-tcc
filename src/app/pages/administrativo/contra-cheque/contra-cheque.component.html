@@ -1,0 +1,119 @@
+<app-bread-crumb [items]="[{ text: 'Administrativo' }, { text: 'Contra Cheque' }]"></app-bread-crumb>
+
+<section class="container content">
+  <div class="row">
+    <div class="card card-outline card-green col-lg-12 col-md-12 ml-5">
+      <div class="card-header">
+        <h3 class="card-title mb-0">
+          <i class="fa fa-address-card" aria-hidden="true"></i>
+          Contra Cheque
+        </h3>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="contraChequeForm" novalidate>
+          <div class="form-group">
+            <label>Matrícula</label>
+            <select
+              class="form-control"
+              formControlName="matricula"
+              [ngClass]="{
+                'is-invalid':
+                  contraChequeForm.controls['matricula'].invalid && contraChequeForm.controls['matricula'].touched
+              }"
+            >
+              <ng-container *ngFor="let matricula of matriculas">
+                <option value="{{ matricula.id }}">
+                  {{ matricula.matricula }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="tipo"
+                id="normal"
+                value="0"
+                (change)="selecionarParcela(0)"
+                formControlName="tipo"
+                checked
+              />
+              <label class="form-check-label" for="normal">
+                <b>Contra Cheque</b>
+              </label>
+            </div>
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="tipo"
+                id="primeira-parcela"
+                value="3"
+                (change)="selecionarParcela(3)"
+                formControlName="tipo"
+              />
+              <label class="form-check-label" for="primeira-parcela">
+                <b>13º Primeira Parcela</b>
+              </label>
+            </div>
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="tipo"
+                id="segunda-parcela"
+                value="4"
+                (change)="selecionarParcela(4)"
+                formControlName="tipo"
+              />
+              <label class="form-check-label" for="segunda-parcela">
+                <b>13º Segunda Parcela</b>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mes</label>
+            <select
+              class="form-control"
+              formControlName="mes"
+              [ngClass]="{
+                'is-invalid': contraChequeForm.controls['mes'].invalid && contraChequeForm.controls['mes'].touched
+              }"
+            >
+              <ng-container *ngFor="let mes of meses">
+                <option value="{{ mes.valor }}">
+                  {{ mes.mes }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Ano</label>
+            <select
+              class="form-control"
+              formControlName="ano"
+              [ngClass]="{
+                'is-invalid': contraChequeForm.controls['ano'].invalid && contraChequeForm.controls['ano'].touched
+              }"
+            >
+              <ng-container *ngFor="let ano of anos">
+                <option value="{{ ano }}">
+                  {{ ano }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer mt-2 mb-2 ml-1 mr-1">
+        <button type="button" class="btn btn-primary" [disabled]="contraChequeForm.invalid">
+          <i class="fas fa-print"></i> Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
