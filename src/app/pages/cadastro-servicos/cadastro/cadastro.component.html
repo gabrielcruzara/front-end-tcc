@@ -1,0 +1,73 @@
+<app-bread-crumb
+  [items]="[
+    { text: 'Cadastro de Serviços', link: '/cadastro-servicos' },
+    { text: 'Cadastro' }
+  ]"
+></app-bread-crumb>
+
+
+<section class="container-fluid content">
+    <div class="card card-outline card-success mr-5 ml-5">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Cadastro de Serviços</h3>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="cadastroForm" novalidate>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <span>
+                    <b> Nome do Serviço </b>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="nomeServico"
+  
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <span>
+                      <b> Custo do Serviço</b>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="custo"
+
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <span>
+                      <b> Valor Cobrado do Serviço </b>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="valorCobrado"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="cadastrar()">
+            <i class="fas fa-check"></i> Cadastrar
+          </button>
+        </div>
+    </div>
+</section>

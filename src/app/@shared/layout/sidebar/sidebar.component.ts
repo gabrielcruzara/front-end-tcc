@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   menus = [
     {
-      id: 3,
+      id: 1,
       nome: 'Inicio',
       url: '/Inicio',
       mostrar: true,
@@ -32,7 +32,24 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       submenus: [],
     },
     {
-      id: 5,
+      id: 2,
+      nome: 'Cadastro de Serviços',
+      url: '/cadastro-servicos',
+      mostrar: true,
+      icone: 'nav-icon fas fa-clinic-medical',
+      submenus: [
+        {
+          id: 20,
+          nome: 'Cadastro',
+          url: '/cadastro-servicos/cadastro',
+          mostrar: true,
+          icone: 'nav-icon fas fa-money-check-alt',
+        },
+
+      ],
+    },
+    {
+      id: 3,
       nome: 'Relatórios',
       url: '/relatorios',
       mostrar: true,
@@ -40,7 +57,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       submenus: [],
     },
     {
-      id: 20,
+      id: 4,
       nome: 'Dashboard',
       url: '/dashboard',
       mostrar: true,

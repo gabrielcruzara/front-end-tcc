@@ -15,7 +15,7 @@
             <i class="far fa-3x fa-user-circle text-muted"></i>
           </h4>
           <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>Usuário ou senha incorretos.</div>
+            <div class="alert alert-danger" [hidden]="!error" translate>Usuário ou senha incorretos.</div>
             <div class="form-group">
               <label class="d-block">
                 <input
@@ -25,14 +25,14 @@
                   autocomplete="email"
                   [placeholder]="'E-mail' | translate"
                 />
-                <span hidden translate>E-mail</span>
+                <!-- <span hidden translate>E-mail</span>
                 <small
                   [hidden]="loginForm.controls.login.valid || loginForm.controls.login.untouched"
                   class="text-danger"
                   translate
                 >
                   E-mail é obrigatório
-                </small>
+                </small> -->
               </label>
               <label class="d-block">
                 <input
@@ -43,32 +43,31 @@
                   [placeholder]="'Senha' | translate"
                   required
                 />
-                <span hidden translate>Senha</span>
+                <!-- <span hidden translate>Senha</span>
                 <small
                   [hidden]="loginForm.controls.senha.valid || loginForm.controls.senha.untouched"
                   class="text-danger"
                   translate
                 >
                   Senha é obrigatório
-                </small>
+                </small> -->
               </label>
             </div>
             <div>
               <button
-                class="btn btn-primary disabled btn-flat mr-4"
-                type="submit"
-                [disabled]="loginForm.invalid || isLoading"
+                class="btn btn-primary disabled mr-4"
+                type="submit"      
               >
-                <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+                <i class="fas fa-cog"></i>
                 <span translate>Entrar</span>
               </button>
 
-              <button class="btn btn-primary btn-flat mr-4" routerLink="/registrar-usuario">
+              <button class="btn btn-primary mr-4" routerLink="/registrar-usuario">
                 <i class="fas fa-user-secret"></i>
                 <span translate>Cadastre-se</span>
               </button>
+              <!-- <pre> {{ loginForm.value | json }}</pre> -->
             </div>
-            <pre> {{ loginForm.value | json }}</pre>
           </form>
         </div>
       </div>

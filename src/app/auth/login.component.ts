@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   version: string | null = environment.version;
   error: string | undefined;
   loginForm!: FormGroup;
-  isLoading = false;
+  // isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   login() {
-    this.isLoading = true;
+    // this.isLoading = true;
+    console.log(this.loginForm.value)
     this.authenticationService
       .login(this.loginForm.value)
       .then((res) => {
@@ -74,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .catch((err) => this.toastr.error('Ocorreu um erro tente novamente mais tarde.', 'Atenção'))
       .finally(() => {
         this.loginForm.markAsPristine();
-        this.isLoading = false;
+        // this.isLoading = false;
       });
   }
 

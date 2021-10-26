@@ -22,6 +22,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
@@ -33,6 +34,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { environment } from '@env/environment';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 defineLocale('pt-br', ptBrLocale);
 registerLocaleData(ptBr);
@@ -66,6 +69,7 @@ registerLocaleData(ptBr);
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
     ShellModule,
+    ChartsModule,
     AuthModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -75,7 +79,7 @@ registerLocaleData(ptBr);
       registrationStrategy: 'registerWhenStable:30000',
     }), // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, InicioComponent],
+  declarations: [AppComponent, InicioComponent, RelatoriosComponent, DashboardComponent],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },

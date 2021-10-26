@@ -1,0 +1,46 @@
+<app-bread-crumb
+  [items]="[
+    { text: 'Dashboard' }
+  ]"
+></app-bread-crumb>
+
+
+<section class="container-fluid content">
+    <div class="card card-outline card-success mr-5 ml-5">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Dashboard</h3>
+        </div>
+
+        <div class="card-body">
+          <!-- <div *ngIf="anos" class="anos">
+            <div class="col-md-5">
+              <select
+              name=""
+              id="ano"
+              class="form-control form-control-sm"
+              >
+              </select>
+              <option selected value="">Selecione</option>
+              <option *ngFor="let ano of anos" [value]="ano">
+                {{ ano }}
+              </option>
+            </div>
+          </div> -->
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+
+        </div>
+    </div>
+</section>
