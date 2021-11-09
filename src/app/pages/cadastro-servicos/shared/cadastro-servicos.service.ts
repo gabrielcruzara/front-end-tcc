@@ -14,20 +14,19 @@ export class CadastroServicosService extends BaseResourceService {
     super();
   }
 
-  buscarServicos(idUsuario: number): Promise<IBaseModel<IListaServicos[]>> {
+  buscarServicos(): Promise<IBaseModel<IListaServicos[]>> {
     return this.httpClient
-    .get<IBaseModel<IListaServicos[]>>(`${environment.serverUrl}/Servico/buscar-servicos?IdentificadorUsuario=${idUsuario}`, {
+    .get<IBaseModel<IListaServicos[]>>(`${environment.serverUrl}/Servico/buscar-servicos`, {
       headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
     })
     .toPromise();
   }
 
-  cadastrarServicos(identificadorUsuario: number, nomeServico: string, custoServico: number, valorCobrado: number): Promise<IBaseModel<any>>{
+  cadastrarServicos(nomeServico: string, custoServico: number, valorCobrado: number): Promise<IBaseModel<any>>{
       return this.httpClient
       .post<IBaseModel<any>>(
         `${environment.serverUrl}/Servico/cadastrar-servicos`,
         {
-          identificadorUsuario: identificadorUsuario,
           nomeServico: nomeServico,
           custoServico: custoServico,
           valorCobrado: valorCobrado

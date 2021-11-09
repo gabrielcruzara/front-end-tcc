@@ -1,6 +1,6 @@
 <app-bread-crumb
   [items]="[
-    { text: 'Cadastro de Serviços', link: '/cadastro-servicos' },
+    { text: 'Serviços', link: '/servicos' },
     { text: 'Cadastro' }
   ]"
 ></app-bread-crumb>
@@ -24,7 +24,7 @@
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="nomeServico"
-  
+                    placeholder="Digite aqui o nome do serviço"
                   />
                 </div>
               </div>
@@ -40,7 +40,7 @@
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="custo"
-
+                    placeholder="R$ 00,00"                   
                   />
                 </div>
               </div>
@@ -56,7 +56,7 @@
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="valorCobrado"
-
+                    placeholder="R$ 00,00"
                   />
                 </div>
               </div>

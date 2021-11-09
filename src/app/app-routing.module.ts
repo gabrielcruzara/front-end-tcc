@@ -16,7 +16,7 @@ const routes: Routes = [
       loadChildren: () => import('./pages/administrativo/administrativo.module').then((m) => m.AdministrativoModule),
     },
     {
-      path: 'cadastro-servicos',
+      path: 'servicos',
       loadChildren: () => import('./pages/cadastro-servicos/cadastro-servicos.module').then((m) => m.CadastroServicosModule),
     },
     { path: 'relatorios', component: RelatoriosComponent },

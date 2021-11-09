@@ -19,11 +19,6 @@ export interface AlterarSenhaContext {
   senhaAtual: string;
   novaSenha: string;
 }
-
-/**
- * Provides a base for authentication workflow.
- * The login/logout methods should be replaced with proper implementation.
- */
 @Injectable({
   providedIn: 'root',
 })
@@ -32,17 +27,26 @@ export class AuthenticationService {
 
   public usuario: IPerfilUsuarioModel;
 
-  constructor(public httpClient: HttpClient /*, private credentialsService: CredentialsService*/) {}
+  constructor(public httpClient: HttpClient) {
+  }
 
-  /**
-   * Authenticates the user.
-   * @param context The login parameters.
-   * @return The user credentials.
-   */
+
   login(context: LoginContext): Promise<IBaseModel<IPerfilUsuarioModel>> {
     return this.httpClient
       .post<IBaseModel<IPerfilUsuarioModel>>(`${environment.serverUrl}/Autenticacao/login`, context)
       .toPromise();
+  }
+
+  cadastaUsuario(email: string, nome: string, senha: string): Promise<IBaseModel<any>> {
+    return this.httpClient
+    .post<IBaseModel<any>>(`${environment.serverUrl}/Autenticacao/cadastrar-usuario`,
+    { 
+      email: email,
+      nome: nome,
+      senha: senha
+    }
+    )
+    .toPromise();
   }
 
   /**

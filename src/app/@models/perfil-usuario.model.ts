@@ -1,7 +1,6 @@
 export interface IPerfilUsuarioModel {
-  //permissoes: IPermissoes[];
   token: IJwtToken;
-  //dadosUsuario: IDadosUsuario;
+  dadosUsuario: IDadosUsuario;
 }
 
 export interface IJwtToken {
@@ -10,16 +9,9 @@ export interface IJwtToken {
   expiration: string;
   refreshToken: string;
 }
-// export interface IDadosUsuario {
-//   login: string;
-//   nome: string;
-//   nrCodigo: string;
-//   grupo: string;
-//   cpf: string;
-// }
+export interface IDadosUsuario {
+  email: string;
+  nome: string;
+  id: number
+}
 
-// export interface IPermissoes {
-//   id: number;
-//   descricao: string;
-//   temAcesso: boolean;
-// }

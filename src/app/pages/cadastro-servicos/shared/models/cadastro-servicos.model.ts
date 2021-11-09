@@ -5,4 +5,3 @@ export interface IListaServicos {
     custoServico: number,
     valorCobrado: number
 }
-  

@@ -9,7 +9,7 @@ import { CadastroServicosService } from '../shared/cadastro-servicos.service';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
-
+  mascara="00.00"
   cadastroForm: FormGroup;
 
   constructor(
@@ -23,10 +23,9 @@ export class CadastroComponent implements OnInit {
 
   cadastrar(): void {
     this.servicoService.cadastrarServicos(
-      this.cadastroForm.value.id, 
       this.cadastroForm.value.nomeServico, 
-      this.cadastroForm.value.custo, 
-      this.cadastroForm.value.valorCobrado)
+      parseFloat(this.cadastroForm.value.custo), 
+      parseFloat(this.cadastroForm.value.valorCobrado))
     .then((res) => {
       if(res.sucesso){
         Swal.fire({
@@ -42,10 +41,9 @@ export class CadastroComponent implements OnInit {
 
   private criarForm() {
     this.cadastroForm = this.formBuilder.group({
-      id: [6, Validators.required],
       nomeServico: ['', Validators.required],
-      custo: [0, Validators.required],
-      valorCobrado: [0, Validators.required],
+      custo: ["", Validators.required],
+      valorCobrado: ["", Validators.required],
     });
   }
 

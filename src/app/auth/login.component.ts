@@ -25,26 +25,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   version: string | null = environment.version;
   error: string | undefined;
   loginForm!: FormGroup;
-  // isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
-    private modalService: BsModalService,
     private toastr: ToastrService
   ) {
     this.createForm();
-  }
-
-  abrirModalAlterarSenha() {
-    const initialState = {
-      login: this.loginForm.controls.login.value,
-      primeiraSenha: true,
-    };
-    this.bsModalRef = this.modalService.show(AlterarSenhaComponent, { initialState });
-    this.loginForm.reset();
   }
 
   ngOnInit() {}
@@ -52,21 +41,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   login() {
-    // this.isLoading = true;
-    console.log(this.loginForm.value)
     this.authenticationService
       .login(this.loginForm.value)
       .then((res) => {
-        console.log(res);
-
         if (res.sucesso) {
-          if (res.mensagem.codigo === 3) {
-            this.abrirModalAlterarSenha();
-            return;
-          }
-
           this.credentialsService.setCredentials(res.dados);
-          //this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
           window.location.replace(this.route.snapshot.queryParams.redirect || '/');
         } else {
           Swal.fire('', res.mensagem.descricao, 'error');
@@ -75,7 +54,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .catch((err) => this.toastr.error('Ocorreu um erro tente novamente mais tarde.', 'Atenção'))
       .finally(() => {
         this.loginForm.markAsPristine();
-        // this.isLoading = false;
       });
   }
 
@@ -83,7 +61,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       senha: ['', Validators.required],
-      // remember: true,
     });
   }
 }
