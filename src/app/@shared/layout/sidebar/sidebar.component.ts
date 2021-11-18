@@ -52,6 +52,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
           mostrar: true,
           icone: 'nav-icon fas fa-money-check-alt',
         },
+        {
+          id: 22,
+          nome: 'Iniciar Serviço',
+          url: '/servicos/execucao-servicos',
+          mostrar: true,
+          icone: 'nav-icon far fa-play-circle',
+        },
 
       ],
     },
@@ -60,7 +67,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       nome: 'Relatórios',
       url: '/relatorios',
       mostrar: true,
-      icone: 'nav-icon fas fa-calendar-alt',
+      icone: 'nav-icon ion ion-stats-bars',
       submenus: [],
     },
     {

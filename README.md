@@ -1,4 +1,4 @@
-# ADMINISTRAÇÃO
+# TCC AUTO VALOR
 Projeto front end para o sistema AUTOVALOR utilizando o template AdminLTE 
 This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
 version 9.1.0

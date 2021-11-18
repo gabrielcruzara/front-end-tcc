@@ -13,6 +13,8 @@ const log = new Logger('Login');
 import Swal from 'sweetalert2';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { ToastrService } from 'ngx-toastr';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +33,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private credentialsService: CredentialsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {
     this.createForm();
   }
@@ -55,6 +58,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .finally(() => {
         this.loginForm.markAsPristine();
       });
+  }
+
+  abrirCriarConta() : void {
+   this.modalService.open(RegistrarUsuarioComponent, { size: 'lg' });
   }
 
   private createForm() {

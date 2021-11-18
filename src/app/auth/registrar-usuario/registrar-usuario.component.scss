@@ -1,0 +1,21 @@
+.btn-primary {
+    color: #fff;
+    background-color: #007BFF;
+    border-color: #007BFF;
+}
+
+.cadastra-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.cadastra-box {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+  }

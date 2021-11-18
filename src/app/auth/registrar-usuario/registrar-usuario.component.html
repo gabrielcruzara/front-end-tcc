@@ -1,67 +1,99 @@
-<div class="content">
-  <div class="container">
-    <div class="card card-outline card-green mr-5 ml-5">
-      <div class="card-header">
-        <h1 class="text-center">
-          <span>Cadastro de Usuário</span>
-        </h1>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="registroForm">
-          <div class="form-row justify-content-center">
-            <div class="form-group col-lg-4 col-lg-offset-4">
-              <label>Nome</label>
-              <input
-                class="form-control"
-                type="text"
-                formControlName="nome"
-                placeholder="Digite aqui o seu nome"
-                required
-              />
-            </div>
+<div class="cadastra-container bg-light">
+  <div class="cadastra-box">
+  <div class="content">
+    <div class="container">
+      <div class="card card-outline card-blue col-md-8 mx-auto" style="margin-top: 200px">
+        <div class="col-md-8 mt-3" style="margin-left: 260px;">
+          <div class="row">
+            <h1>
+              <span>Cadastre-se</span>
+            </h1>
           </div>
-          <div class="form-row justify-content-center">
-            <div class="form-group col-lg-4 col-lg-offset-4">
-              <label>E-mail</label>
-              <input
-                class="form-control"
-                type="text"
-                formControlName="email"
-                placeholder="Digite aqui o seu E-mail"
-                required
-              />
-            </div>
+        </div>
+        
+        <div class="col-md-8 mt-3" style="margin-left: 300px;">
+          <div class="row">
+            <h4 class="card-title">
+              <i class="far fa-3x fa-user-circle text-muted"></i>
+            </h4>
+            <!-- <h1>
+              <img src="../../assets/img/user.png" />
+            </h1> -->
           </div>
-          <div class="form-row justify-content-center">
-            <div class="form-group col-lg-4 col-lg-offset-4">
-              <label>Senha</label>
-              <input
-                class="form-control"
-                type="password"
-                formControlName="senha"
-                placeholder="Digite aqui a sua senha"
-                required
-              />
-            </div>
-          </div>
+        </div>  
 
-          <pre> {{ registroForm.value | json }}</pre>
+        <div class="card-body">
+          <form [formGroup]="registroForm">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-2 mt-2">
+                    <b>Nome</b>
+                  </div>
+                  
+                  <div class="col-md-8">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="nome"
+                      placeholder="Nome Completo"
+                      required
+                  />
+                  </div>
+                </div>
 
-        </form>
-      </div>
-      <div class="card-footer">
-        <div class="form-row justify-content-center">
-          <button class="btn btn-danger">
-            <i class="fas fa-check"></i>
-            <span>Voltar</span>
-          </button>
+                <br />
 
-          <button type="button" class="btn btn-primary" (click)="cadastrar()">
-            <i class="fas fa-check"></i>
-            <span>Registre-se</span>
-          </button>
+                <div class="row">
+                  <div class="col-md-2 mt-2">
+                    <b>E-mail</b>
+                  </div>
+
+                  <div class="col-md-8">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="email"
+                      placeholder="E-mail"
+                      required
+                  />
+                  </div>
+                </div>
+
+                <br />
+                
+                <div class="row">
+                  <div class="col-md-2 mt-2">
+                    <b>Senha</b>
+                  </div>
+
+                  <div class="col-md-8">
+                    <input
+                      class="form-control"
+                      type="password"
+                      formControlName="senha"
+                      placeholder="Senha"
+                      required
+                  />
+                  </div>
+                </div>
+              </div>
+              <!-- <pre>{{ registroForm.value | json }} </pre> -->
+          </form>
+        </div>
+
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary" (click)="cadastrar()">
+              <i class="fas fa-check"></i>
+              <span>Cadastre-se</span>
+            </button>
+
+            <button class="btn btn-danger" style="float: right" (click)="voltar()">
+              <i class="fas fa-times"></i>
+              <span>Voltar</span>
+            </button>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>

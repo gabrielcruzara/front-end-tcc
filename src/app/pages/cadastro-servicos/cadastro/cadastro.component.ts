@@ -3,19 +3,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
 
+import $ from 'jquery';
+import 'jquery-mask-plugin';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
-  mascara="00.00"
   cadastroForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private servicoService: CadastroServicosService,
   ) { }
+
+  ngAfterViewInit() {
+    $('.custo').mask('000.000.000.000.000,00', {reverse: true});
+    $('.valor').mask('000.000.000.000.000,00', {reverse: true});
+  }
 
   ngOnInit(): void {
     this.criarForm()
@@ -41,9 +48,9 @@ export class CadastroComponent implements OnInit {
 
   private criarForm() {
     this.cadastroForm = this.formBuilder.group({
-      nomeServico: ['', Validators.required],
-      custo: ["", Validators.required],
-      valorCobrado: ["", Validators.required],
+      nomeServico: [null, Validators.required],
+      custo: [null, Validators.required],
+      valorCobrado: [null, Validators.required],
     });
   }
 

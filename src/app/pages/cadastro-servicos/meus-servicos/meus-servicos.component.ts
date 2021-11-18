@@ -1,11 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
 import { IListaServicos } from '../shared/models/cadastro-servicos.model';
+import { EditarServicoComponent } from './editar-servico/editar-servico.component';
+
+import $ from 'jquery';
+import 'jquery-mask-plugin';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-meus-servicos',
@@ -13,6 +19,8 @@ import { IListaServicos } from '../shared/models/cadastro-servicos.model';
   styleUrls: ['./meus-servicos.component.scss']
 })
 export class MeusServicosComponent implements OnInit {
+  identificadorServico: number;
+
   public deveExibir = false;
   public semDados = true;
   public selectedModel: any = null;
@@ -27,7 +35,12 @@ export class MeusServicosComponent implements OnInit {
     private formBuilder: FormBuilder,
     private servicoService: CadastroServicosService,
     private spinner: NgxSpinnerService,
+    private modalService: NgbModal
   ) { }
+
+  ngAfterViewInit() {
+    $('.custo').mask('000.000.000.000.000,00', {reverse: true});
+  }
 
   ngOnInit(): void {
     this.buscarServicos();
@@ -48,10 +61,59 @@ export class MeusServicosComponent implements OnInit {
       .finally(() => this.spinner.hide('servicos'));
   }
 
+  excluirServico(): void {
+    Swal.fire({
+      title: 'ATENÇÃO!',
+      html: `
+      Deseja excluir o serviço selecionado?  
+      `,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicoService
+        .excluirServico(this.identificadorServico)
+        .then((res) => {
+            if(res.sucesso){
+              Swal.fire({
+                title: 'Atenção!',
+                text: res.resultadoValidacao[0].errorMessage,
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+              });
+              this.buscarServicos();
+            } 
+            else {
+              Swal.fire({
+                title: 'Atenção!',
+                text: res.resultadoValidacao[0].errorMessage,
+                icon: 'error',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+              });
+            }
+        });
+      }
+    })
+  }
+
   selecionar(item: any) {
     this.selectedModel = !this.selectedModel || this.selectedModel !== item ? item : null; // grid
     console.log(this.selectedModel);
+    this.identificadorServico = this.selectedModel.identificadorServico;
   }
 
+  abrirEditarServico(): void {
+    const modalRef = this.modalService.open(EditarServicoComponent, { size: 'lg' });
+    modalRef.componentInstance.identificadorServico = this.selectedModel.identificadorServico;
+    modalRef.componentInstance.nomeServico = this.selectedModel.nomeServico;
+    modalRef.componentInstance.custoServico = this.selectedModel.custoServico;
+    modalRef.componentInstance.valorCobrado = this.selectedModel.valorCobrado;
+  }
 
 }

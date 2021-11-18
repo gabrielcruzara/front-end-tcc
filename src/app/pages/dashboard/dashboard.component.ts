@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit {
   public barChartLegend = true;
 
   public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Custo'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Lucro'}
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Custo Total'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Ganho Total'},
   ];
 
   constructor() { }

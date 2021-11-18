@@ -7,7 +7,7 @@
 
 
 <section class="container-fluid content">
-    <div class="card card-outline card-success mr-5 ml-5">
+    <div class="card card-outline card-blue mr-5 ml-5">
         <div class="card-header">
             <h3 class="card-title mb-0">Cadastro de Serviços</h3>
         </div>
@@ -40,7 +40,8 @@
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="custo"
-                    placeholder="R$ 00,00"                   
+                    placeholder="R$ 00,00"
+                    id="custo"                   
                   />
                 </div>
               </div>
@@ -57,6 +58,7 @@
                     class="form-control form-control-sm"
                     formControlName="valorCobrado"
                     placeholder="R$ 00,00"
+                    id="valor"
                   />
                 </div>
               </div>
@@ -65,7 +67,7 @@
         </div>
         
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="cadastrar()">
+          <button type="button" class="btn btn-success" (click)="cadastrar()">
             <i class="fas fa-check"></i> Cadastrar
           </button>
         </div>

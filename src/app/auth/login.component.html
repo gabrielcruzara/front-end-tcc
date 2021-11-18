@@ -1,17 +1,12 @@
 <div class="login-container bg-light">
   <div class="login-box">
     <h1 translate>
-      <!-- <img src="../../assets/img/logo.png" /> -->
+      <img src="../../assets/img/logoautovalor.svg" style="max-width: 250px" />
     </h1>
-    <div>
-      <h2 class="d-inline-block ml-3">
-        <span>AutoValor</span>
-      </h2>
-    </div>
     <div class="container">
       <div class="card col-md-6 mt-3 mx-auto">
         <div class="card-body">
-          <h4 class="card-title text-center">
+          <h4 class="card-title" style="margin-left: 200px;">
             <i class="far fa-3x fa-user-circle text-muted"></i>
           </h4>
           <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
@@ -25,14 +20,6 @@
                   autocomplete="email"
                   [placeholder]="'E-mail' | translate"
                 />
-                <!-- <span hidden translate>E-mail</span>
-                <small
-                  [hidden]="loginForm.controls.login.valid || loginForm.controls.login.untouched"
-                  class="text-danger"
-                  translate
-                >
-                  E-mail é obrigatório
-                </small> -->
               </label>
               <label class="d-block">
                 <input
@@ -43,14 +30,6 @@
                   [placeholder]="'Senha' | translate"
                   required
                 />
-                <!-- <span hidden translate>Senha</span>
-                <small
-                  [hidden]="loginForm.controls.senha.valid || loginForm.controls.senha.untouched"
-                  class="text-danger"
-                  translate
-                >
-                  Senha é obrigatório
-                </small> -->
               </label>
             </div>
             <div>
@@ -64,9 +43,8 @@
 
               <button class="btn btn-primary mr-4" routerLink="/registrar-usuario">
                 <i class="fas fa-user-secret"></i>
-                <span translate>Cadastre-se</span>
+                <span translate>Criar Conta</span>
               </button>
-              <!-- <pre> {{ loginForm.value | json }}</pre> -->
             </div>
           </form>
         </div>
