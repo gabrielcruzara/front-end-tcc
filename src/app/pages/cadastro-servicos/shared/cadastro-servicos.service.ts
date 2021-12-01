@@ -4,7 +4,7 @@ import { IBaseModel } from '@app/@models/base/base.model';
 import { BaseResourceService } from '@app/@shared/services/base-resource.service';
 import { CredentialsService } from '@app/auth';
 import { environment } from '@env/environment';
-import { IExeucaoServico, IListaServicos } from './models/cadastro-servicos.model';
+import { IExeucaoServico, IListaServicos, IServicosConcluidos } from './models/cadastro-servicos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +81,62 @@ export class CadastroServicosService extends BaseResourceService {
     servicosExecucao(): Promise<IBaseModel<IExeucaoServico[]>> {
       return this.httpClient
       .get<IBaseModel<IExeucaoServico[]>>(`${environment.serverUrl}/Servico/buscar-servicos-execucao`, {
+        headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+      })
+      .toPromise();
+    }
+
+    adicionarServico(identificadorHistoricoServico: number): Promise<IBaseModel<any>>{
+      return this.httpClient
+      .put<IBaseModel<any>>(
+        `${environment.serverUrl}/Servico/aumentar-servico`,
+        {
+          identificadorHistoricoServico: identificadorHistoricoServico,
+        },
+        { 
+          headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+        }
+      )
+      .toPromise();
+    }
+
+    diminuirServico(identificadorHistoricoServico: number): Promise<IBaseModel<any>>{
+      return this.httpClient
+      .delete<IBaseModel<any>>(
+        `${environment.serverUrl}/Servico/diminuir-servico?IdentificadorHistoricoServico=${identificadorHistoricoServico}`, {
+          headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+        })
+        .toPromise();
+    }
+
+    concluirServico(identificadorHistoricoServico: number, observacao: string, quantidade: number): Promise<IBaseModel<any>>{
+      return this.httpClient
+      .put<IBaseModel<any>>(
+        `${environment.serverUrl}/Servico/concluir-servico`,
+        {
+          identificadorHistoricoServico: identificadorHistoricoServico,
+          observacao: observacao,
+          quantidade: quantidade
+        },
+        { 
+          headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+        }
+      )
+      .toPromise();
+    }
+
+    excluirServicoExecucao(identificadorHistoricoServico: number): Promise<IBaseModel<any>>{
+      return this.httpClient
+      .delete<IBaseModel<any>>(
+        `${environment.serverUrl}/Servico/excluir-servico-execucao?IdentificadorHistoricoServico=${identificadorHistoricoServico}`, {
+          headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+        })
+        .toPromise();
+    }
+
+    servicosConcluidos(): Promise<IBaseModel<IServicosConcluidos[]>> {
+      return this.httpClient
+      .get<IBaseModel<IServicosConcluidos[]>>(`${environment.serverUrl}/Servico/lista-servicos-concluidos`, {
         headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
       })
       .toPromise();

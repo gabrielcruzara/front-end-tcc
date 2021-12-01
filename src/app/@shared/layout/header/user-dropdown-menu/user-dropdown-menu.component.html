@@ -7,14 +7,18 @@
     <li class="user-header">
       <img src="assets/img/user.png" class="img-circle elevation-2" alt="User Image" />
       <p>
-        <small></small>{{ credentialsService.credentials?.dadosUsuario.nome }}
+        <small></small>
+        {{ credentialsService.credentials?.dadosUsuario.nome }}
+      </p>
+      <p>
+        <small></small>
         {{ credentialsService.credentials?.dadosUsuario.email }}
       </p>
 
     </li>
     <!-- Menu Footer-->
     <li class="user-footer">
-      <a class="btn btn-default btn-flat float-left">Alterar Senha</a>
+      <!-- <a class="btn btn-default btn-flat float-left">Alterar Senha</a> -->
       <a (click)="logout()" class="btn btn-default btn-flat float-right">Sair</a>
     </li>
   </ul>

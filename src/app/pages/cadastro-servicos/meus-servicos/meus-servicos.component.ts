@@ -114,6 +114,10 @@ export class MeusServicosComponent implements OnInit {
     modalRef.componentInstance.nomeServico = this.selectedModel.nomeServico;
     modalRef.componentInstance.custoServico = this.selectedModel.custoServico;
     modalRef.componentInstance.valorCobrado = this.selectedModel.valorCobrado;
+
+    modalRef.result.then(() => {
+      this.buscarServicos();
+    });
   }
 
 }

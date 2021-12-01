@@ -5,17 +5,18 @@ import Swal from 'sweetalert2';
 import { CadastroServicosService } from '../../shared/cadastro-servicos.service';
 
 @Component({
-  selector: 'app-editar-servico',
-  templateUrl: './editar-servico.component.html',
-  styleUrls: ['./editar-servico.component.scss']
+  selector: 'app-concluir-servico',
+  templateUrl: './concluir-servico.component.html',
+  styleUrls: ['./concluir-servico.component.scss']
 })
-export class EditarServicoComponent implements OnInit {
-  @Input('identificadorServico') identificadorServico : number;
-  @Input('nomeServico') nomeServico : string;
-  @Input('custoServico') custoServico : any;
-  @Input('valorCobrado') valorCobrado : any;
-
-  editarForm: FormGroup;
+export class ConcluirServicoComponent implements OnInit {
+  @Input('nomeServico') nomeServico: string;
+  @Input('custoServico') custoServico: number;
+  @Input('valorCobrado') valorCobrado: number;
+  @Input('quantidade') quantidade: number;
+  @Input('idHistoricoServico') idHistoricoServico: number;
+  
+  concluirForm: FormGroup;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -27,9 +28,9 @@ export class EditarServicoComponent implements OnInit {
     this.criarForm();
   }
 
-  editarServico(): void {
+  concluirServico(): void {
     this.servicoService
-    .editarServicos(this.identificadorServico, this.editarForm.value.nomeServico, parseFloat(this.editarForm.value.custo), parseFloat(this.editarForm.value.valorCobrado))
+    .concluirServico(this.idHistoricoServico, this.concluirForm.value.observacao, this.quantidade)
     .then((res) => {
       if(res.sucesso){
         Swal.fire({
@@ -54,10 +55,12 @@ export class EditarServicoComponent implements OnInit {
   }
 
   private criarForm() {
-    this.editarForm = this.formBuilder.group({
-      nomeServico: [this.nomeServico, Validators.required],
-      custo: [this.custoServico, Validators.required],
-      valorCobrado: [this.valorCobrado, Validators.required],
+    this.concluirForm = this.formBuilder.group({
+      custo: [{value: this.custoServico, disabled: true}, Validators.required],
+      nomeServico: [{value: this.nomeServico, disabled: true}, Validators.required],
+      quantidade: [{value: this.quantidade, disabled: true}, Validators.required],
+      valorCobrado: [{value: this.valorCobrado, disabled: true}, Validators.required],
+      observacao: [{value: '', disabled: false}, Validators.required],
     });
   }
 }

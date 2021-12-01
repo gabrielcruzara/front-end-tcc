@@ -3,10 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
 import { IExeucaoServico, IListaServicos } from '../shared/models/cadastro-servicos.model';
+import { ConcluirServicoComponent } from './concluir-servico/concluir-servico.component';
+import { RelatorioServicoComponent } from './relatorio-servico/relatorio-servico.component';
 
 @Component({
   selector: 'app-execucao',
@@ -16,6 +19,8 @@ import { IExeucaoServico, IListaServicos } from '../shared/models/cadastro-servi
 export class ExecucaoComponent implements OnInit {
   servicos: IListaServicos[];
   iniciaForm: FormGroup;
+
+  idHistoricoServico: number;
 
   public deveExibir = true;
   public semDados = true;
@@ -31,12 +36,83 @@ export class ExecucaoComponent implements OnInit {
     private servicoService: CadastroServicosService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.criarForm();
     this.buscarServicos();
     this.carregarServicos();
+  }
+
+  adicionarServico(): void {
+    this.servicoService
+    .adicionarServico(this.idHistoricoServico)
+    .then((res) => {
+      if(res.sucesso){
+        this.carregarServicos();
+      }
+    });
+  }
+
+  diminuirServico(): void {
+    this.servicoService
+    .diminuirServico(this.idHistoricoServico)
+    .then((res) => {
+      if(res.sucesso){
+        this.carregarServicos();
+      }
+      else {
+        Swal.fire({
+          title: 'Atenção!',
+          text: res.resultadoValidacao[0].errorMessage,
+          icon: 'error',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      }
+    });
+  }
+
+  excluirServicoExecucao(): void {
+    Swal.fire({
+      title: 'ATENÇÃO!',
+      html: `
+      Deseja excluir o serviço selecionado?  
+      `,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicoService
+        .excluirServicoExecucao(this.idHistoricoServico)
+        .then((res) => {
+          if(res.sucesso){
+            Swal.fire({
+              title: 'Atenção!',
+              text: res.resultadoValidacao[0].errorMessage,
+              icon: 'success',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+            });
+            this.carregarServicos();
+          }
+          else {
+            Swal.fire({
+              title: 'Atenção!',
+              text: res.resultadoValidacao[0].errorMessage,
+              icon: 'error',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+            });
+          }
+        });
+      }
+    })
   }
 
   iniciarServico(): void {
@@ -74,6 +150,7 @@ export class ExecucaoComponent implements OnInit {
   selecionar(item: any) {
     this.selectedModel = !this.selectedModel || this.selectedModel !== item ? item : null; // grid
     console.log(this.selectedModel);
+    this.idHistoricoServico = this.selectedModel.idHistoricoServico
   }
 
   buscarServicos() {
@@ -85,9 +162,30 @@ export class ExecucaoComponent implements OnInit {
     });
   }
 
+  abrirConcluirServico(): void {
+    const modalRef = this.modalService.open(ConcluirServicoComponent, { size: 'lg' });
+    modalRef.componentInstance.nomeServico = this.selectedModel.nomeServico;
+    modalRef.componentInstance.custoServico = this.selectedModel.custoServico;
+    modalRef.componentInstance.valorCobrado = this.selectedModel.valorCobrado;
+    modalRef.componentInstance.quantidade = this.selectedModel.quantidade;
+    modalRef.componentInstance.idHistoricoServico = this.selectedModel.idHistoricoServico;
+
+    modalRef.result.then(() => {
+      this.carregarServicos();
+    });
+  }
+
+  abrirRelatorioServico(): void {
+    const modalRef = this.modalService.open(RelatorioServicoComponent, { size: 'lg' });
+    modalRef.componentInstance.nomeServico = this.selectedModel.nomeServico;
+    modalRef.componentInstance.custoServico = this.selectedModel.custoServico;
+    modalRef.componentInstance.valorCobrado = this.selectedModel.valorCobrado;
+    modalRef.componentInstance.quantidade = this.selectedModel.quantidade;    
+  }
+
   private criarForm() {
     this.iniciaForm = this.formBuilder.group({
-      inicia: [null, Validators.required],
+      inicia: ['', Validators.required],
     });
   }
 }

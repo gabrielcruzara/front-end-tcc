@@ -79,7 +79,7 @@
 
     
                             <ng-container matColumnDef="horaInicio">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Inicio</th>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Inicio</th>
                                 <td mat-cell *matCellDef="let element"> {{ element.horaInicio }}</td>
                             </ng-container>
 
@@ -95,7 +95,9 @@
                                         type="button" 
                                         class="btn btn-info" 
                                         tooltip="Adicionar"
-                                        [disabled]="!selectedModel" >
+                                        [disabled]="!selectedModel"
+                                        (click)="adicionarServico()" 
+                                    >
                                         <i class="fas fa-plus"></i>
                                     </button>
 
@@ -103,17 +105,41 @@
                                         type="button" 
                                         class="btn btn-danger" 
                                         tooltip="Diminuir"
-                                        [disabled]="!selectedModel">
+                                        [disabled]="!selectedModel"
+                                        (click)="diminuirServico()"
+                                    >
                                         <i class="fas fa-minus"></i>
+                                    </button>
+
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-warning" 
+                                        tooltip="Relatório do Serviço"
+                                        [disabled]="!selectedModel"
+                                        (click)="abrirRelatorioServico()"
+                                    >
+                                    <i class="ion ion-stats-bars"></i>
                                     </button>
 
                                     <button 
                                         type="button" 
                                         class="btn btn-success" 
                                         tooltip="Concluir Serviço"
-                                        [disabled]="!selectedModel">
+                                        [disabled]="!selectedModel"
+                                        (click)="abrirConcluirServico()"
+                                    >
                                     <i class="fas fa-check"></i>
-                                </button>
+                                    </button>
+
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-outline-danger" 
+                                        tooltip="Excluir Serviço em Execução"
+                                        [disabled]="!selectedModel"
+                                        (click)="excluirServicoExecucao()"
+                                    >
+                                    <i class="fas fa-times"></i>
+                                    </button>
                                 </td>
                             </ng-container>
 

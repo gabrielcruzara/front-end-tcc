@@ -1,0 +1,101 @@
+<div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title">Concluir Serviço</h1>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
+      <span>&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="card card-outline card-blue mt-3">
+        <form [formGroup]="concluirForm" novalidate>
+            <div class="row">
+                <div class="col-md-5 mt-3" style="margin-left: 8px">
+                    <div class="form-group">
+                        <span>
+                            <b> Nome do Serviço</b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="nomeServico"
+                        />
+                    </div>
+                </div>
+
+                <div class="col-md-5 mt-3" style="margin-left: 8px">
+                    <div class="form-group">
+                        <span>
+                            <b>Quantidade</b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="quantidade"                  
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5" style="margin-left: 8px">
+                    <div class="form-group">
+                        <span>
+                            <b> Custo do Serviço </b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="custo"
+                        />
+                    </div>
+                </div>
+
+                <div class="col-md-5" style="margin-left: 8px">
+                    <div class="form-group">
+                        <span>
+                            <b> Valor Cobrado do Serviço </b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="valorCobrado"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-11" style="margin-left: 8px">
+                    <div class="form-group">
+                    <span>
+                        <b> Observação </b>
+                    </span>
+                    <textarea
+                        type="text"
+                        class="form-control form-control-sm"
+                        formControlName="observacao"
+                        placeholder="Digite aqui uma observação desse serviço se achar necessário."
+                        rows="5"
+                        style="resize: none;"
+                    ></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="mr-auto">
+        <button type="button" class="btn btn-success" (click)="concluirServico()">
+            <i class="fas fa-check"></i>
+            <span>Concluir Serviço</span>
+        </button>
+    </div>
+
+    <button type="button" class="btn btn-danger" (click)="activeModal.close()">
+        <i class="fas fa-times"></i>
+        <span>Voltar</span>
+    </button>
+</div>
+  

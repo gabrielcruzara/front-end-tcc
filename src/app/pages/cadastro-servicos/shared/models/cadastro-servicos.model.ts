@@ -15,3 +15,15 @@ export interface IExeucaoServico {
     horaInicio: string;
     observacao: string;
 }
+
+export interface IServicosConcluidos {
+    identificadorHistoricoServico: number;
+    identificadorServico: number;
+    nomeServico: string;
+    quantidade: number;
+    custoServico: number;
+    valorCobrado: number;
+    observacao: string;
+    horaInicio: string;
+    horaFinal: string;
+}
