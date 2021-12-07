@@ -12,10 +12,6 @@ const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'registro-usuario', component: RegistrarUsuarioComponent },
     {
-      path: 'administrativo',
-      loadChildren: () => import('./pages/administrativo/administrativo.module').then((m) => m.AdministrativoModule),
-    },
-    {
       path: 'servicos',
       loadChildren: () => import('./pages/cadastro-servicos/cadastro-servicos.module').then((m) => m.CadastroServicosModule),
     },

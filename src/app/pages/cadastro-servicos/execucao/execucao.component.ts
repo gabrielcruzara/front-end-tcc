@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JoyrideService } from 'ngx-joyride';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
@@ -32,11 +33,20 @@ export class ExecucaoComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  tour(){
+    this.joyride.startTour({ 
+      steps: ['selecionar', 'iniciar', 'selecionarServico', 'adicionar', 'diminuir', 'relatorio', 'concluir', 'excluir'],
+      themeColor: '#5EAAF9',
+      stepDefaultPosition: 'top',
+    });    
+  }
+
   constructor(
     private servicoService: CadastroServicosService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private joyride: JoyrideService
   ) { }
 
   ngOnInit(): void {

@@ -1,5 +1,7 @@
 <div class="modal-header">
-    <h1 class="modal-title" id="modal-basic-title">Editar Serviço</h1>
+    <h1 class="modal-title" id="modal-basic-title">
+        <i class="fas fa-edit"></i> Editar Serviço
+    </h1>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
       <span>&times;</span>
     </button>
@@ -19,7 +21,12 @@
                             class="form-control form-control-sm"
                             formControlName="nomeServico"
                             placeholder="Digite aqui o nome do serviço"
+                            [ngClass]="{
+                                'is-invalid':
+                                editarForm.controls['nomeServico'].invalid && editarForm.controls['nomeServico'].touched
+                            }" 
                         />
+                        <app-form-field-error [form-control]="editarForm.get('nomeServico')"></app-form-field-error>
                     </div>
                 </div>
             </div>
@@ -27,15 +34,22 @@
             <div class="row">
                 <div class="col-md-5" style="margin-left: 8px">
                     <div class="form-group">
-                    <span>
-                        <b> Custo do Serviço</b>
-                    </span>
-                    <input
-                        type="text"
-                        class="form-control form-control-sm"
-                        formControlName="custo"
-                        placeholder="R$ 00,00"                   
-                    />
+                        <span>
+                            <b> Custo do Serviço</b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="custo"
+                            placeholder="R$ 00,00"
+                            currencyMask
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                            [ngClass]="{
+                            'is-invalid':
+                            editarForm.controls['custo'].invalid && editarForm.controls['custo'].touched
+                            }"                    
+                        />
+                        <app-form-field-error [form-control]="editarForm.get('custo')"></app-form-field-error>
                     </div>
                 </div>
             </div>
@@ -43,15 +57,22 @@
             <div class="row">
                 <div class="col-md-5" style="margin-left: 8px">
                     <div class="form-group">
-                    <span>
-                        <b> Valor Cobrado do Serviço </b>
-                    </span>
-                    <input
-                        type="text"
-                        class="form-control form-control-sm"
-                        formControlName="valorCobrado"
-                        placeholder="R$ 00,00"
-                    />
+                        <span>
+                            <b> Valor Cobrado do Serviço </b>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="valorCobrado"
+                            placeholder="R$ 00,00"
+                            currencyMask
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                            [ngClass]="{
+                                'is-invalid':
+                                editarForm.controls['valorCobrado'].invalid && editarForm.controls['valorCobrado'].touched
+                            }" 
+                        />
+                        <app-form-field-error [form-control]="editarForm.get('valorCobrado')"></app-form-field-error>
                     </div>
                 </div>
             </div>
@@ -61,7 +82,7 @@
 
 <div class="modal-footer">
     <div class="mr-auto">
-        <button type="button" class="btn btn-success" (click)="editarServico()">
+        <button type="button" class="btn btn-success" (click)="editarServico()" [disabled]="editarForm.invalid">
             <i class="fas fa-check"></i>
             <span>Salvar</span>
         </button>

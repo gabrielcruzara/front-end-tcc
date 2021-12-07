@@ -6,7 +6,20 @@
 <section class="container-fluid content">
     <div class="card card-outline card-blue mr-5 ml-5">
         <div class="card-header">
-            <h3 class="card-title mb-0">Iniciar Serviço</h3>
+            <div class="row">
+                <div class="col-md-11">
+                    <h3 class="card-title mb-0">
+                        <i class="far fa-play-circle"></i>
+                        Iniciar Serviço
+                    </h3>
+                </div>
+    
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-sm btn-outline-dark" (click)="tour()" matTooltip="Tutorial da tela" matTooltipPosition="before" >
+                      <i class="fas fa-question"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="card-body">
@@ -14,21 +27,20 @@
                 <div class="row">
                     <div class="col-md-6" style="margin-left: 10px">
                         <div class="input-group">
-                            <select name="" id="servico" class="form-control form-control-sm" formControlName="inicia">
+                            <select name="" id="servico" class="form-control form-control-sm" formControlName="inicia" joyrideStep="selecionar" title="Selecionar Serviço para Iniciar" text="O Primeiro passo é selecionar o serviço que você deseja iniciar.">
                                 <option selected value="">Selecione o Serviço</option>
                                 <option *ngFor="let servico of servicos" [value]="servico.identificadorServico">
                                     {{ servico.nomeServico }}
                                 </option>
                             </select>
     
-                            <button type="button" class="btn btn-success btn-sm" (click)="iniciarServico()">
+                            <button type="button" class="btn btn-success btn-sm" (click)="iniciarServico()" joyrideStep="iniciar" title="Iniciar Serviço" text="O Segundo passo é iniciar o serviço selecionado.">
                                 <i class="fas fa-check"></i>
                                 <span>Iniciar Serviço</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <!-- <pre> {{ iniciaForm.value | json }}</pre> -->
             </form>
 
             <hr />
@@ -96,7 +108,11 @@
                                         class="btn btn-info" 
                                         tooltip="Adicionar"
                                         [disabled]="!selectedModel"
-                                        (click)="adicionarServico()" 
+                                        (click)="adicionarServico()"
+                                        joyrideStep="adicionar" 
+                                        title="Adicionar o serviço concluído" 
+                                        text="O Quarto passo é adicionar o serviço que foi concluído."
+                                        stepPosition="bottom" 
                                     >
                                         <i class="fas fa-plus"></i>
                                     </button>
@@ -107,6 +123,10 @@
                                         tooltip="Diminuir"
                                         [disabled]="!selectedModel"
                                         (click)="diminuirServico()"
+                                        joyrideStep="diminuir" 
+                                        title="Diminuir Serviço" 
+                                        text="Caso queira, aqui é possivel remover um serviço que você adicionou anteriormente."
+                                        stepPosition="bottom"
                                     >
                                         <i class="fas fa-minus"></i>
                                     </button>
@@ -117,6 +137,10 @@
                                         tooltip="Relatório do Serviço"
                                         [disabled]="!selectedModel"
                                         (click)="abrirRelatorioServico()"
+                                        joyrideStep="relatorio" 
+                                        title="Visualzar Relatório" 
+                                        text="Aqui é possível visualizar todo o relatório do serviço que está em execução."
+                                        stepPosition="bottom"
                                     >
                                     <i class="ion ion-stats-bars"></i>
                                     </button>
@@ -127,6 +151,10 @@
                                         tooltip="Concluir Serviço"
                                         [disabled]="!selectedModel"
                                         (click)="abrirConcluirServico()"
+                                        joyrideStep="concluir" 
+                                        title="Concluir Serviço" 
+                                        text="O Quinto passo é concluir o serviço após a realização."
+                                        stepPosition="bottom"
                                     >
                                     <i class="fas fa-check"></i>
                                     </button>
@@ -137,15 +165,25 @@
                                         tooltip="Excluir Serviço em Execução"
                                         [disabled]="!selectedModel"
                                         (click)="excluirServicoExecucao()"
+                                        joyrideStep="excluir" 
+                                        title="Excluir Serviço em Execução" 
+                                        text="Aqui é possível excluir o serviço que você iniciou, seja por qualquer motivo, basta clicar aqui e excluir ele."
+                                        stepPosition="bottom"
                                     >
                                     <i class="fas fa-times"></i>
                                     </button>
                                 </td>
                             </ng-container>
 
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selecionar(row)"
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns" 
+                                (click)="selecionar(row)"
                                 class="clickable"
-                                [ngClass]="{ 'bg-light': selectedModel?.idHistoricoServico === row.idHistoricoServico }">
+                                [ngClass]="{ 'bg-light': selectedModel?.idHistoricoServico === row.idHistoricoServico }"
+                                joyrideStep="selecionarServico" 
+                                title="Selecionar Serviço" 
+                                text="O Terceiro passo é selecionar um serviço que deseja realizar as operações." 
+                                stepPosition="bottom"
+                                >
                             </tr>
                         </table>
 

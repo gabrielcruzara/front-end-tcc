@@ -1,11 +1,20 @@
-<!-- <app-bread-crumb [items]="[]"></app-bread-crumb> -->
 <div class="content">
   <div class="container-fluid">
-    <h1 class="text-center display-4 mt-3">Bem vindo ao sistema</h1>
+    <div class="row">
+      <div class="col-md-11">
+        <h1 class="text-center display-4 mt-3">Bem vindo ao sistema</h1>
+      </div>
 
+      <div class="col-md-1">
+        <button type="button" class="btn btn-outline-dark display-4 mt-3" (click)="tour()" matTooltip="Tutorial da tela" matTooltipPosition="before" >
+          <i class="fas fa-question"></i>
+        </button>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
+        <div class="small-box bg-info" joyrideStep="passoUm" title="Meus Serviços" text="Aqui você pode visualizar seus serviços cadastrados">
           <div class="inner">
             <h3>0</h3>
             <p>Meus Serviços</p>
@@ -19,8 +28,7 @@
       </div>
 
       <div class="col-lg-3 col-6">
- 
-        <div class="small-box bg-success">
+        <div class="small-box bg-success" joyrideStep="passoDois" title="Relatórios" text="Aqui você pode visualizar seus relatórios">
           <div class="inner">
             <h3>0<sup style="font-size: 20px"></sup></h3>
 
@@ -34,8 +42,7 @@
       </div>
 
       <div class="col-lg-3 col-6">
-
-        <div class="small-box bg-warning">
+        <div class="small-box bg-warning" joyrideStep="passoTres" title="Dashboard" text="Aqui você pode visualizar um gráfico sobre seu ganho e despesa durante o ano">
           <div class="inner">
             <h3>0</h3>
 
@@ -49,7 +56,7 @@
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
+        <div class="small-box bg-danger" joyrideStep="passoQuatro" title="Iniciar Serviço" text="Aqui é onde tudo se inicia, você é direcionado para iniciar o serviço desejado">
           <div class="inner">
             <h3>0</h3>
 
@@ -64,3 +71,4 @@
     </div>
   </div>
 </div>
+<ngx-guided-tour></ngx-guided-tour>

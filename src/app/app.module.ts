@@ -36,6 +36,8 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
+import { JoyrideModule } from 'ngx-joyride';
 
 defineLocale('pt-br', ptBrLocale);
 registerLocaleData(ptBr);
@@ -70,6 +72,8 @@ registerLocaleData(ptBr);
     LoadingBarRouterModule,
     ShellModule,
     ChartsModule,
+    GuidedTourModule,
+    JoyrideModule.forRoot(),
     AuthModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -86,6 +90,7 @@ registerLocaleData(ptBr);
     { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter },
     { provide: NgbDateAdapter, useClass: CustomAdapter },
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
+    { provide: GuidedTourService}
   ],
   bootstrap: [AppComponent],
 })

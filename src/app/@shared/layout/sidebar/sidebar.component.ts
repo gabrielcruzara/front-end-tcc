@@ -43,14 +43,14 @@ export class SidebarComponent implements OnInit, AfterViewInit {
           nome: 'Cadastro',
           url: '/servicos/cadastro',
           mostrar: true,
-          icone: 'nav-icon fas fa-money-check-alt',
+          icone: 'nav-icon fas fa-pencil-alt',
         },
         {
           id: 21,
           nome: 'Meus Serviços',
           url: '/servicos/meus-servicos',
           mostrar: true,
-          icone: 'nav-icon fas fa-money-check-alt',
+          icone: 'nav-icon fas fa-cogs',
         },
         {
           id: 22,

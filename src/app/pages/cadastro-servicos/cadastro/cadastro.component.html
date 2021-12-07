@@ -9,7 +9,9 @@
 <section class="container-fluid content">
     <div class="card card-outline card-blue mr-5 ml-5">
         <div class="card-header">
-            <h3 class="card-title mb-0">Cadastro de Serviços</h3>
+            <h3 class="card-title mb-0">
+              <i class="fas fa-pencil-alt"></i> Cadastro de Serviços
+            </h3>
         </div>
 
         <div class="card-body">
@@ -25,8 +27,13 @@
                     class="form-control form-control-sm"
                     formControlName="nomeServico"
                     placeholder="Digite aqui o nome do serviço"
+                    [ngClass]="{
+                      'is-invalid':
+                      cadastroForm.controls['nomeServico'].invalid && cadastroForm.controls['nomeServico'].touched
+                    }"
                   />
-                </div>
+                  <app-form-field-error [form-control]="cadastroForm.get('nomeServico')"></app-form-field-error>
+                </div>              
               </div>
             </div>
 
@@ -41,8 +48,15 @@
                     class="form-control form-control-sm"
                     formControlName="custo"
                     placeholder="R$ 00,00"
-                    id="custo"                   
+                    id="custo"         
+                    currencyMask
+                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                    [ngClass]="{
+                      'is-invalid':
+                      cadastroForm.controls['custo'].invalid && cadastroForm.controls['custo'].touched
+                    }"          
                   />
+                  <app-form-field-error [form-control]="cadastroForm.get('custo')"></app-form-field-error>
                 </div>
               </div>
             </div>
@@ -57,9 +71,16 @@
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="valorCobrado"
-                    placeholder="R$ 00,00"
                     id="valor"
+                    placeholder="R$ 00,00"
+                    currencyMask
+                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                    [ngClass]="{
+                      'is-invalid':
+                      cadastroForm.controls['valorCobrado'].invalid && cadastroForm.controls['valorCobrado'].touched
+                    }" 
                   />
+                  <app-form-field-error [form-control]="cadastroForm.get('valorCobrado')"></app-form-field-error>
                 </div>
               </div>
             </div>
@@ -67,7 +88,7 @@
         </div>
         
         <div class="card-footer">
-          <button type="button" class="btn btn-success" (click)="cadastrar()">
+          <button type="button" class="btn btn-success" (click)="cadastrar()" [disabled]="cadastroForm.invalid">
             <i class="fas fa-check"></i> Cadastrar
           </button>
         </div>

@@ -8,9 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
 import { IListaServicos } from '../shared/models/cadastro-servicos.model';
 import { EditarServicoComponent } from './editar-servico/editar-servico.component';
-
-import $ from 'jquery';
-import 'jquery-mask-plugin';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -37,10 +34,6 @@ export class MeusServicosComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: NgbModal
   ) { }
-
-  ngAfterViewInit() {
-    $('.custo').mask('000.000.000.000.000,00', {reverse: true});
-  }
 
   ngOnInit(): void {
     this.buscarServicos();

@@ -8,6 +8,8 @@ import { EditarServicoComponent } from './meus-servicos/editar-servico/editar-se
 import { ExecucaoComponent } from './execucao/execucao.component';
 import { ConcluirServicoComponent } from './execucao/concluir-servico/concluir-servico.component';
 import { RelatorioServicoComponent } from './execucao/relatorio-servico/relatorio-servico.component';
+import { NgxCurrencyModule } from 'ngx-currency';
+import { JoyrideModule } from 'ngx-joyride';
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { RelatorioServicoComponent } from './execucao/relatorio-servico/relatori
     RelatorioServicoComponent
   ],
   imports: [
-    CommonModule, CadastroServicosRoutingModule, SharedModule
+    CommonModule, CadastroServicosRoutingModule, SharedModule, NgxCurrencyModule, JoyrideModule.forRoot(),
   ]
 })
 export class CadastroServicosModule { }
