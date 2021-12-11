@@ -85,7 +85,13 @@
                         placeholder="Digite aqui uma observação desse serviço se achar necessário."
                         rows="5"
                         style="resize: none;"
+                        maxlength="501"
+                        [ngClass]="{
+                            'is-invalid':
+                            concluirForm.controls['observacao'].invalid && concluirForm.controls['observacao'].touched
+                        }" 
                     ></textarea>
+                    <app-form-field-error [form-control]="concluirForm.get('observacao')"></app-form-field-error>
                     </div>
                 </div>
             </div>
@@ -106,4 +112,4 @@
         <span>Voltar</span>
     </button>
 </div>
-  
+

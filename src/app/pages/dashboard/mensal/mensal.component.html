@@ -1,0 +1,29 @@
+<app-bread-crumb
+  [items]="[
+    { text: 'Lucro Mensal' }
+  ]"
+></app-bread-crumb>
+
+<section class="container-fluid content">
+    <div class="card card-outline card-blue" style="max-width: 1200px; margin-left: 100px;">
+        <div class="card-header">
+            <h3 class="card-title mb-0">
+              <i class="fas fa-chart-line"></i> Gráfico de Lucro Mensal - 2021
+            </h3>
+        </div>
+
+        <div class="card-body">
+          <div>
+            <div style="display: block">
+              <canvas id="canvas">
+                {{ chart }}
+              </canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+
+        </div>
+    </div>
+</section>

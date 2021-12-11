@@ -1,58 +1,12 @@
 <div class="modal-header">
-  <h2 class="modal-title"><b>Cadastrar primeira senha</b></h2>
+  <h2 class="modal-title"><b>Alterar Senha</b></h2>
   <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <h4>O usuário deve cadastrar uma senha para acessar o portal</h4>
   <form [formGroup]="alterarSenhaForm" novalidate>
-    <div class="form-group">
-      <label for="cpf" class="control-label">CPF</label>
-      <input
-        formControlName="cpf"
-        type="text"
-        id="cpf"
-        class="form-control"
-        mask="000.000.000-99"
-        placeholder="CPF"
-        [ngClass]="{
-          'is-invalid': alterarSenhaForm.controls['cpf'].invalid && alterarSenhaForm.controls['cpf'].touched
-        }"
-      />
-      <div
-        *ngIf="alterarSenhaForm.controls['cpf'].invalid && alterarSenhaForm.controls['cpf'].touched"
-        class="invalid-feedback"
-      >
-        <div *ngIf="alterarSenhaForm.controls['cpf'].errors.required">Campo obrigatório</div>
-      </div>
-    </div>
-    <div class="form-group date">
-      <label for="data-nascimento" class="control-label">Data de Nascimento</label>
-
-      <input
-        formControlName="dataNascimento"
-        type="text"
-        id="data-nascimento"
-        mask="00/00/9999"
-        class="form-control"
-        placeholder="__/__/____"
-        [ngClass]="{
-          'is-invalid':
-            alterarSenhaForm.controls['dataNascimento'].invalid && alterarSenhaForm.controls['dataNascimento'].touched
-        }"
-      />
-
-      <div
-        *ngIf="
-          alterarSenhaForm.controls['dataNascimento'].invalid && alterarSenhaForm.controls['dataNascimento'].touched
-        "
-        class="invalid-feedback"
-      >
-        <div *ngIf="alterarSenhaForm.controls['dataNascimento'].errors.required">Campo obrigatório</div>
-      </div>
-    </div>
-    <div class="form-group" *ngIf="!primeiraSenha">
+    <div class="form-group" >
       <label for="senha-atual" class="control-label">Senha Atual</label>
       <input
         formControlName="senhaAtual"
@@ -146,7 +100,7 @@
   <button type="button" (click)="bsModalRef.hide()" class="btn btn-danger">
     <i class="fas fa-times"></i> Cancelar
   </button>
-  <button type="button" [disabled]="alterarSenhaForm.invalid" class="btn btn-success">
+  <button type="button" [disabled]="alterarSenhaForm.invalid" class="btn btn-success" (click)="AlterarSenha()">
     <i class="fas fa-check"></i> Confirmar
   </button>
 </div>

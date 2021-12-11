@@ -1,4 +1,4 @@
-export interface IGraficoDespesaGanho {
+export interface IMeses {
     janeiro: number;
     fevereiro: number;
     marco: number;

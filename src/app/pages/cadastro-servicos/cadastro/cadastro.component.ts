@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JoyrideService } from 'ngx-joyride';
 import Swal from 'sweetalert2';
 import { CadastroServicosService } from '../shared/cadastro-servicos.service';
 
-declare var $: any;
 
 @Component({
   selector: 'app-cadastro',
@@ -15,11 +15,25 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private servicoService: CadastroServicosService,    
+    private servicoService: CadastroServicosService,
+    private joyride: JoyrideService    
   ) { }
 
   ngOnInit(): void {
     this.criarForm()
+  }
+
+  tour(){
+    this.joyride.startTour({ 
+      steps: ['nome', 'custo', 'valor', 'cadastrar'],
+      themeColor: '#99ccff',
+      stepDefaultPosition: 'right',
+      customTexts: {
+        next: '>>',
+        prev: '<<',
+        done: 'Ok'
+      }
+    });    
   }
 
   cadastrar(): void {
@@ -33,6 +47,17 @@ export class CadastroComponent implements OnInit {
           title: 'Atenção!',
           text: res.resultadoValidacao[0].errorMessage,
           icon: 'success',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+        
+        this.cadastroForm.reset();
+      } 
+      else {
+        Swal.fire({
+          title: 'Atenção!',
+          text: res.resultadoValidacao[0].errorMessage,
+          icon: 'error',
           allowOutsideClick: false,
           allowEscapeKey: false,
         });

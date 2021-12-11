@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { ChartDataSets, ChartOptions} from 'chart.js';
-import { type } from 'jquery';
 import { Color, Label} from 'ng2-charts';
-import { DashboardService } from './shared/dashboard.service';
-import { IGraficoDespesaGanho } from './shared/models/dashboard.model';
+import { DashboardService } from '../shared/dashboard.service';
+import { IMeses } from '../shared/models/dashboard.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,23 +11,10 @@ import { IGraficoDespesaGanho } from './shared/models/dashboard.model';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  custo: IGraficoDespesaGanho;
-  ganho: IGraficoDespesaGanho;
+  custo: IMeses;
+  ganho: IMeses;
 
   chart: any;
-
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-
-  public barChartData = [
-    {data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], label: 'Custo'},
-    {data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], label: 'Ganho'},
-  ];
 
   constructor(
     private dashboardService: DashboardService,
@@ -44,9 +30,6 @@ export class DashboardComponent implements OnInit {
         this.custo = res.dados[0];
         this.ganho = res.dados[1];
 
-        console.log(this.custo);
-        console.log(this.ganho);
-
         this.chart = new Chart('canvas',{
           type: 'bar',
           data: {
@@ -54,7 +37,7 @@ export class DashboardComponent implements OnInit {
             datasets: [
               {
                 label: 'Custo',
-                data: [this.custo.janeiro, this.custo.fevereiro, this.custo.marco, this.custo.abril, this.custo.maio, this.custo.junho, this.custo.julho, this.custo.agosto, this.custo.setembro, this.custo.outubro, this.custo.novembro, this.custo.dezembro],
+                data: [ this.custo.janeiro, this.custo.fevereiro, this.custo.marco, this.custo.abril, this.custo.maio, this.custo.junho, this.custo.julho, this.custo.agosto, this.custo.setembro, this.custo.outubro, this.custo.novembro, this.custo.dezembro],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor:  'rgb(255, 99, 132)',
                 borderWidth: 1
@@ -70,7 +53,7 @@ export class DashboardComponent implements OnInit {
           },
           options: {
             legend: {
-              display: false
+              display: true
             },
             scales: {
               xAxes: [{
@@ -85,6 +68,6 @@ export class DashboardComponent implements OnInit {
             }
           }
         })
-      });
+    });
   }
 }

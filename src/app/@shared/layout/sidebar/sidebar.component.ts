@@ -59,7 +59,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
           mostrar: true,
           icone: 'nav-icon far fa-play-circle',
         },
-
       ],
     },
     {
@@ -75,11 +74,30 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       nome: 'Dashboard',
       url: '/dashboard',
       mostrar: true,
-      icone: 'nav-icon fas fa-chart-line',
-      submenus: [],
+      icone: 'nav-icon fas fa-chart-area',
+      submenus: [
+        {
+          id: 27,
+          nome: 'Ganhos e Custos',
+          url: '/dashboard/ganhos-custos',
+          mostrar: true,
+          icone: 'nav-icon fas fa-chart-bar',
+        },
+        {
+          id: 28,
+          nome: 'Lucro Mensal',
+          url: '/dashboard/mensal',
+          mostrar: true,
+          icone: 'nav-icon fas fa-chart-line',
+        },
+      ],
     },
   ];
-  constructor(public authService: AuthenticationService, public credentialService: CredentialsService) {}
+
+  constructor(
+    public authService: AuthenticationService, 
+    public credentialService: CredentialsService
+  ) {}
   ngOnInit(): void {}
 
   ngAfterViewInit() {

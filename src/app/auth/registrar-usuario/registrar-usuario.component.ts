@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthenticationService } from '..';
@@ -23,7 +23,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   }
 
   cadastrar(): void{
-    this.authService.cadastaUsuario(this.registroForm.value.email, this.registroForm.value.nome, this.registroForm.value.senha)
+    this.authService.cadastraUsuario(this.registroForm.value.email, this.registroForm.value.nome, this.registroForm.value.senha)
     .then((res) => {
       if(res.sucesso){
         Swal.fire({
@@ -54,7 +54,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   criarFormulario() {
     this.registroForm = this.formBuilder.group({
-      nome: [null, Validators.required],
+      nome: [null, [Validators.required, Validators.maxLength(50)] ],
       email: [null, Validators.required],
       senha: [null, Validators.required],
     });

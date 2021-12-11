@@ -16,7 +16,7 @@
       >
         <li class="nav-header">MENU</li>
         <ng-container *ngFor="let menu of menus">
-          <li class="nav-item" [hidden]="!menu.mostrar" [class.administrativo]="menu.nome === 'Administrativo'">
+          <li class="nav-item" [hidden]="!menu.mostrar">
             <a [routerLink]="[menu.url]" routerLinkActive="bg-blue" class="nav-link">
               <i [class]="menu.icone"></i>
               <p>
@@ -29,7 +29,6 @@
                 <li
                   class="nav-item"
                   [hidden]="!submenu.mostrar"
-                  [class.administrativo]="menu.nome === 'Administrativo'"
                 >
                   <a routerLinkActive="bg-blue" [routerLink]="[submenu.url]" class="nav-link">
                     <i [class]="submenu.icone"></i>

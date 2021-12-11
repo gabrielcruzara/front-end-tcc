@@ -27,3 +27,9 @@ export interface IServicosConcluidos {
     horaInicio: string;
     horaFinal: string;
 }
+
+export interface IListaTotal {
+    quantidadeServicosCadastrados: string;
+    quantidadeServicosConcluidos: string;
+    quantidadeServicosExecucao: string;
+}

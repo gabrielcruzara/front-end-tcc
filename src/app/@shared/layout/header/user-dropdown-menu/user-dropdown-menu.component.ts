@@ -29,14 +29,13 @@ export class UserDropdownMenuComponent implements OnInit {
 
   ngOnInit() {}
 
-  // alterarSenha(): void {
-  //   const initialState = {
-  //     login: this.credentialsService.credentials.dadosUsuario.login,
-  //     primeiraSenha: false,
-  //   };
+  alterarSenha(): void {
+    const initialState = {
+      login: this.credentialsService.credentials.dadosUsuario.email,
+    };
 
-  //   this.bsModalRef = this.modalService.show(AlterarSenhaComponent, { initialState });
-  // }
+    this.bsModalRef = this.modalService.show(AlterarSenhaComponent, { initialState });
+  }
 
   public toggleDropdownMenu() {
     if (this.dropdownMenu.nativeElement.classList.contains('show')) {

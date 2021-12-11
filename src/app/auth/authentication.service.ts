@@ -13,12 +13,6 @@ export interface LoginContext {
   senha: string;
 }
 
-export interface AlterarSenhaContext {
-  cpf: string;
-  dataNascimento: string;
-  senhaAtual: string;
-  novaSenha: string;
-}
 @Injectable({
   providedIn: 'root',
 })
@@ -37,7 +31,7 @@ export class AuthenticationService {
       .toPromise();
   }
 
-  cadastaUsuario(email: string, nome: string, senha: string): Promise<IBaseModel<any>> {
+  cadastraUsuario(email: string, nome: string, senha: string): Promise<IBaseModel<any>> {
     return this.httpClient
     .post<IBaseModel<any>>(`${environment.serverUrl}/Autenticacao/cadastrar-usuario`,
     { 
@@ -49,63 +43,20 @@ export class AuthenticationService {
     .toPromise();
   }
 
-  /**
-   * Altera a senha do usuário.
-   * @param context Parametros para alterar a senha
-   * @return The user credentials.
-   */
-  // alterarSenha(context: AlterarSenhaContext): Promise<IBaseModel<any>> {
-  //   return this.httpClient
-  //     .post<IBaseModel<any>>(`${environment.serverUrl}/autenticacao/alterar-senha`, context)
-  //     .toPromise();
-  // }
+  alterarSenha(email: string, senhaAtual: string, novaSenha: string): Promise<IBaseModel<any>> {
+    return this.httpClient
+      .post<IBaseModel<any>>(`${environment.serverUrl}/Autenticacao/altera-senha`,
+      { 
+        email: email,
+        senhaAtual: senhaAtual,
+        novaSenha: novaSenha
+      }
+      )
+      .toPromise();
+  }
 
-  /**
-   * Logs out the user and clear credentials.
-   * @return True if the user was logged out successfully.
-   */
   logout(): Observable<boolean> {
-    // Customize credentials invalidation here
-    // this.credentialsService.setCredentials();
     window.location.replace('/');
     return of(true);
   }
-
-  // public async obterPerfilUsuario(): Promise<IBaseModel<IPerfilUsuarioModel>> {
-  //   if (this.usuario) {
-  //     return Promise.resolve({ sucesso: true, dados: this.usuario } as IBaseModel<IPerfilUsuarioModel>);
-  //   } else {
-  //     try {
-  //       const res = await this.httpClient
-  //         .get<IBaseModel<IPerfilUsuarioModel>>(`${this.apiBaseUrl}/usuario/perfil`)
-  //         .toPromise();
-  //       this.usuario = res.dados;
-  //       return res;
-  //     } catch (err) {
-  //       delete this.usuario;
-  //       throw err;
-  //     }
-  //   }
-  // }
-  // public obterEstado(): Promise<IBaseModel<IUsuarioEstadoModel>> {
-  //   return this.httpClient
-  //     .get<IBaseModel<IUsuarioEstadoModel>>(`${this.apiBaseUrl}/usuario/estado`)
-  //     .toPromise();
-  // }
-
-  // public logout(): void {
-  //   window.location.replace('/conta/logout');
-  // }
-
-  // public login(): void {
-  //   window.location.replace('/conta/login?returnUrl=' + window.location);
-  // }
-
-  // public possuiPermissao(permissao: string) {
-  //   return this.usuario && this.usuario.permissoes && this.usuario.permissoes.indexOf(permissao) >= 0;
-  // }
-
-  // public possuiPerfis(perfis: string[]) {
-  //   return this.usuario && this.usuario.perfis && perfis.some((p) => this.usuario.perfis.indexOf(p) >= 0);
-  // }
 }

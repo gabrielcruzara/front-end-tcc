@@ -4,7 +4,7 @@ import { IBaseModel } from '@app/@models/base/base.model';
 import { BaseResourceService } from '@app/@shared/services/base-resource.service';
 import { CredentialsService } from '@app/auth';
 import { environment } from '@env/environment';
-import { IExeucaoServico, IListaServicos, IServicosConcluidos } from './models/cadastro-servicos.model';
+import { IExeucaoServico, IListaServicos, IListaTotal, IServicosConcluidos } from './models/cadastro-servicos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,14 @@ export class CadastroServicosService extends BaseResourceService {
   buscarServicos(): Promise<IBaseModel<IListaServicos[]>> {
     return this.httpClient
     .get<IBaseModel<IListaServicos[]>>(`${environment.serverUrl}/Servico/buscar-servicos`, {
+      headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
+    })
+    .toPromise();
+  }
+
+  buscaTotal(): Promise<IBaseModel<IListaTotal[]>> {
+    return this.httpClient
+    .get<IBaseModel<IListaTotal[]>>(`${environment.serverUrl}/Servico/busca-total`, {
       headers: this.setHeader(this.credentialsService.credentials.token.accessToken),
     })
     .toPromise();

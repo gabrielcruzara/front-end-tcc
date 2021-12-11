@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-11">
-        <h1 class="text-center display-4 mt-3">Bem vindo ao sistema</h1>
+        <h1 class="text-center display-4 mt-3">Bem vindo ao Auto Valor</h1>
       </div>
 
       <div class="col-md-1">
@@ -16,8 +16,8 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info" joyrideStep="passoUm" title="Meus Serviços" text="Aqui você pode visualizar seus serviços cadastrados">
           <div class="inner">
-            <h3>0</h3>
-            <p>Meus Serviços</p>
+            <h3> {{ meusServicos}} </h3>
+            <p class>Meus Serviços</p>
           </div>
           
           <div class="icon">
@@ -30,7 +30,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-success" joyrideStep="passoDois" title="Relatórios" text="Aqui você pode visualizar seus relatórios">
           <div class="inner">
-            <h3>0<sup style="font-size: 20px"></sup></h3>
+            <h3> {{ relatorios }}<sup style="font-size: 20px"></sup></h3>
 
             <p>Relatórios</p>
           </div>
@@ -44,7 +44,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-warning" joyrideStep="passoTres" title="Dashboard" text="Aqui você pode visualizar um gráfico sobre seu ganho e despesa durante o ano">
           <div class="inner">
-            <h3>0</h3>
+            <h3>2</h3>
 
             <p>Dashboard</p>
           </div>
@@ -58,7 +58,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-danger" joyrideStep="passoQuatro" title="Iniciar Serviço" text="Aqui é onde tudo se inicia, você é direcionado para iniciar o serviço desejado">
           <div class="inner">
-            <h3>0</h3>
+            <h3>{{ iniciarServico }}</h3>
 
             <p>Iniciar Serviço</p>
           </div>

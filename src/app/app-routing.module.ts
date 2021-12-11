@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -16,7 +16,10 @@ const routes: Routes = [
       loadChildren: () => import('./pages/cadastro-servicos/cadastro-servicos.module').then((m) => m.CadastroServicosModule),
     },
     { path: 'relatorios', component: RelatoriosComponent },
-    { path: 'dashboard', component: DashboardComponent },
+    
+    { path: 'dashboard', 
+      loadChildren: () => import('./pages/dashboard/dash.module').then((m) => m.DashModule),
+    },
   ]),
   // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' },

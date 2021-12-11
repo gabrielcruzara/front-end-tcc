@@ -36,8 +36,13 @@ export class ExecucaoComponent implements OnInit {
   tour(){
     this.joyride.startTour({ 
       steps: ['selecionar', 'iniciar', 'selecionarServico', 'adicionar', 'diminuir', 'relatorio', 'concluir', 'excluir'],
-      themeColor: '#5EAAF9',
+      themeColor: '#99ccff',
       stepDefaultPosition: 'top',
+      customTexts: {
+        next: '>>',
+        prev: '<<',
+        done: 'Ok'
+      }
     });    
   }
 
@@ -158,8 +163,7 @@ export class ExecucaoComponent implements OnInit {
   }
 
   selecionar(item: any) {
-    this.selectedModel = !this.selectedModel || this.selectedModel !== item ? item : null; // grid
-    console.log(this.selectedModel);
+    this.selectedModel = !this.selectedModel || this.selectedModel !== item ? item : null;
     this.idHistoricoServico = this.selectedModel.idHistoricoServico
   }
 
@@ -168,7 +172,6 @@ export class ExecucaoComponent implements OnInit {
       .buscarServicos()
       .then((res) => {
         this.servicos = res.dados;
-        console.log(res.dados);
     });
   }
 

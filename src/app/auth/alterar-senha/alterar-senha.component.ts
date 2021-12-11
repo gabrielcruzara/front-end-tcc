@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../authentication.service';
 import Swal from 'sweetalert2';
+import { CredentialsService } from '..';
 
 @Component({
   selector: 'app-alterar-senha',
@@ -10,66 +11,55 @@ import Swal from 'sweetalert2';
   styleUrls: ['./alterar-senha.component.scss'],
 })
 export class AlterarSenhaComponent implements OnInit {
-  @Input('primeira-senha') primeiraSenha: boolean;
-
   login: string;
   alterarSenhaForm!: FormGroup;
 
   constructor(
     public bsModalRef: BsModalRef,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private credentialService: CredentialsService
   ) {}
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  // AlterarSenha() {
-  //   this.authenticationService.alterarSenha(this.alterarSenhaForm.value).then((res) => {
-  //     // console.log(res);
-  //     if (res.mensagem.codigo === 5) {
-  //       Swal.fire('Atenção!', res.resultadoValidacao[0].errorMessage, 'error');
-  //       return;
-  //     }
-
-  //     Swal.fire('Atenção!', res.mensagem.descricao, 'success');
-  //     this.bsModalRef.hide();
-  //   });
-  // }
+  AlterarSenha() {
+    this.authenticationService.alterarSenha(this.credentialService.credentials.dadosUsuario.email, this.alterarSenhaForm.value.senhaAtual, this.alterarSenhaForm.value.novaSenha).then((res) => {
+      if(res.sucesso){
+        Swal.fire({
+          title: 'Atenção!',
+          text: res.resultadoValidacao[0].errorMessage,
+          icon: 'success',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+        this.bsModalRef.hide();
+      } 
+      else {
+        Swal.fire({
+          title: 'Atenção!',
+          text: res.resultadoValidacao[0].errorMessage,
+          icon: 'error',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      }
+    });
+  }
 
   private createForm() {
-    if (!this.primeiraSenha === true) {
       this.alterarSenhaForm = this.formBuilder.group(
         {
-          cpf: ['', Validators.required],
-          dataNascimento: ['', Validators.required],
-          senhaAtual: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-          novaSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-          confirmarSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-          login: [this.login],
-        },
-        {
-          validator: MustMatch('novaSenha', 'confirmarSenha'),
-        }
-      );
-      return;
-    } else {
-      //console.log('entrou no else');
-      this.alterarSenhaForm = this.formBuilder.group(
-        {
-          cpf: ['', Validators.required],
-          dataNascimento: ['', Validators.required],
           senhaAtual: [''],
-          novaSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-          confirmarSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-          login: [this.login],
+          novaSenha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
+          confirmarSenha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
         },
         {
           validator: MustMatch('novaSenha', 'confirmarSenha'),
         }
       );
-    }
   }
 }
 
@@ -79,11 +69,9 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     const matchingControl = formGroup.controls[matchingControlName];
 
     if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-      // return if another validator has already found an error on the matchingControl
       return;
     }
 
-    // set error on matchingControl if validation fails
     if (control.value !== matchingControl.value) {
       matchingControl.setErrors({ mustMatch: true });
     } else {

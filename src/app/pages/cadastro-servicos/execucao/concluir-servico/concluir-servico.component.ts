@@ -60,7 +60,7 @@ export class ConcluirServicoComponent implements OnInit {
       nomeServico: [{value: this.nomeServico, disabled: true}, Validators.required],
       quantidade: [{value: this.quantidade, disabled: true}, Validators.required],
       valorCobrado: [{value: this.valorCobrado, disabled: true}, Validators.required],
-      observacao: [{value: '', disabled: false}, Validators.required],
+      observacao: [{value: '', disabled: false}, [Validators.maxLength(500)]],
     });
   }
 }

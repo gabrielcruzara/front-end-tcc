@@ -35,7 +35,6 @@ import { environment } from '@env/environment';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
 import { JoyrideModule } from 'ngx-joyride';
 
@@ -83,7 +82,7 @@ registerLocaleData(ptBr);
       registrationStrategy: 'registerWhenStable:30000',
     }), // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, InicioComponent, RelatoriosComponent, DashboardComponent],
+  declarations: [AppComponent, InicioComponent, RelatoriosComponent],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },

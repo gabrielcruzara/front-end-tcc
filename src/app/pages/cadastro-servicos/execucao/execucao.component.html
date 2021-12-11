@@ -56,6 +56,10 @@
                 </ngx-spinner>
 
                 <div class="col-md-12">
+                    <label>Serviços em Execução</label>
+                </div>
+
+                <div class="col-md-12">
                     <div class="mat-elevation-z4" [hidden]="!deveExibir">
                         <table 
                             mat-table [dataSource]="dataSource" 
@@ -138,7 +142,7 @@
                                         [disabled]="!selectedModel"
                                         (click)="abrirRelatorioServico()"
                                         joyrideStep="relatorio" 
-                                        title="Visualzar Relatório" 
+                                        title="Visualizar Relatório" 
                                         text="Aqui é possível visualizar todo o relatório do serviço que está em execução."
                                         stepPosition="bottom"
                                     >
@@ -170,7 +174,7 @@
                                         text="Aqui é possível excluir o serviço que você iniciou, seja por qualquer motivo, basta clicar aqui e excluir ele."
                                         stepPosition="bottom"
                                     >
-                                    <i class="fas fa-times"></i>
+                                    <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
                             </ng-container>
@@ -187,7 +191,7 @@
                             </tr>
                         </table>
 
-                        <h5 [hidden]="!semDados" class="table-no-data">Nenhum serviço selecionado</h5>
+                        <h5 [hidden]="!semDados" class="table-no-data">Nenhum serviço em execução</h5>
 
                         <mat-paginator [pageSizeOptions]=" [10, 15, 20]" showFirstLastButtons
                             (page)="selectedModel = null">

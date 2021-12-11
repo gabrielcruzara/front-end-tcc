@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,7 +28,6 @@ export class MeusServicosComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private formBuilder: FormBuilder,
     private servicoService: CadastroServicosService,
     private spinner: NgxSpinnerService,
     private modalService: NgbModal
@@ -45,7 +43,6 @@ export class MeusServicosComponent implements OnInit {
       .buscarServicos()
       .then((res) => {
         this.dataSource = new MatTableDataSource<IListaServicos>(res.dados);
-        console.log(res.dados);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.semDados = this.dataSource.filteredData.length === 0;
@@ -97,7 +94,6 @@ export class MeusServicosComponent implements OnInit {
 
   selecionar(item: any) {
     this.selectedModel = !this.selectedModel || this.selectedModel !== item ? item : null; // grid
-    console.log(this.selectedModel);
     this.identificadorServico = this.selectedModel.identificadorServico;
   }
 
@@ -112,5 +108,4 @@ export class MeusServicosComponent implements OnInit {
       this.buscarServicos();
     });
   }
-
 }

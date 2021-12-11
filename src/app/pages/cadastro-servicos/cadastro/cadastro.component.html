@@ -9,9 +9,19 @@
 <section class="container-fluid content">
     <div class="card card-outline card-blue mr-5 ml-5">
         <div class="card-header">
-            <h3 class="card-title mb-0">
-              <i class="fas fa-pencil-alt"></i> Cadastro de Serviços
-            </h3>
+          <div class="row">
+              <div class="col-md-11">
+                <h3 class="card-title mb-0">
+                  <i class="fas fa-pencil-alt"></i> Cadastro de Serviços
+                </h3>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-outline-dark" (click)="tour()" matTooltip="Tutorial da tela" matTooltipPosition="before" >
+                  <i class="fas fa-question"></i>
+                </button>
+              </div>
+          </div>
         </div>
 
         <div class="card-body">
@@ -23,6 +33,7 @@
                     <b> Nome do Serviço </b>
                   </span>
                   <input
+                    joyrideStep="nome" title="Nome do Serviço" text="O Primeiro passo é você colocar o nome do seu serviço."
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="nomeServico"
@@ -44,6 +55,7 @@
                       <b> Custo do Serviço</b>
                   </span>
                   <input
+                    joyrideStep="custo" title="Custo do Serviço" text="O Segundo passo é você colocar o custo do seu serviço."
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="custo"
@@ -68,6 +80,7 @@
                       <b> Valor Cobrado do Serviço </b>
                   </span>
                   <input
+                    joyrideStep="valor" title="Valor Cobrado do Serviço" text="O Terceiro passo é você digitar o Valor Cobrado do seu Serviço."
                     type="text"
                     class="form-control form-control-sm"
                     formControlName="valorCobrado"
@@ -88,7 +101,7 @@
         </div>
         
         <div class="card-footer">
-          <button type="button" class="btn btn-success" (click)="cadastrar()" [disabled]="cadastroForm.invalid">
+          <button type="button" class="btn btn-success" (click)="cadastrar()" joyrideStep="cadastrar" title="Cadastrar Serviço" text="O Quarto e último passo é você clicar no botão de cadastrar.">
             <i class="fas fa-check"></i> Cadastrar
           </button>
         </div>
